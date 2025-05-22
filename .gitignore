@@ -12,3 +12,4 @@ test*
 poetry.lock
 pyproject.toml
 .vscode
+PACKAGING_GUIDE.md
