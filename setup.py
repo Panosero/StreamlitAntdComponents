@@ -1,6 +1,5 @@
-from os.path import dirname
-from os.path import join
 import setuptools
+from os.path import dirname, join
 
 
 def readme() -> str:
