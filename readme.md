@@ -21,7 +21,7 @@ This library now provides component blow:
 - `checkbox` A group of checkbox.
 - `rate` Rate component
 - `switch` Switching between two states or on-off state
-- `transfer` Double column transfer choice box
+- `transfer` Double column transfer choice box with case-insensitive search
 - `segmented` Segmented Controls.
 - `tabs` A tabs component.
 - `tree` A hierarchical list structure component.
@@ -57,6 +57,30 @@ st.write(f'The selected button label is: {btn}')
 ```
 
 ![buttons](./img/buttons.jpg)
+
+## Transfer with Case-Insensitive Search
+
+The transfer widget now supports case-insensitive search, making it easier to find items regardless of their case.
+
+```python
+import streamlit as st
+import streamlit_antd_components as sac
+
+# Sample data with mixed case
+mixed_case_items = ["Apple", "banana", "CHERRY", "Date", "Elderberry"]
+
+# Using the transfer widget with search enabled
+result = sac.transfer(
+    items=mixed_case_items,
+    label="Case-insensitive Transfer Demo",
+    titles=["Available", "Selected"],
+    search=True,  # Enable search
+    return_index=False
+)
+st.write("Selected items:", result)
+```
+
+When searching in the transfer widget, terms like "apple", "APPLE", or "Apple" will all match "Apple" in the list.
 
 ## Todo
 

@@ -58,13 +58,27 @@ const AntdTransfer = (props: TransferProp) => {
     const [targetKeys, setTargetKeys] = useState(index);
 
     //callback
-    const onChange = (nextTargetKeys: string[], direction: TransferDirection, moveKeys: string[]) => {
+    const onChange = (nextTargetKeys: any[], direction: TransferDirection, moveKeys: any[]) => {
         setTargetKeys(nextTargetKeys);
         Streamlit.setComponentValue(nextTargetKeys.map((x) => return_index ? Number(x) : kv[Number(x)]));
     };
     const onSearch = (dir: TransferDirection, value: string) => {
         Streamlit.setComponentValue(targetKeys.map((x: any) => return_index ? Number(x) : kv[Number(x)]))
     };
+
+    // Case-insensitive search filter
+    const filterOption = (inputValue: string, option: any) => {
+        const searchTerm = inputValue.toLowerCase().trim();
+        if (!searchTerm) return true;
+        
+        // Search in title (case-insensitive)
+        if (option.title && option.title.toLowerCase().includes(searchTerm)) {
+            return true;
+        }
+        
+        return false;
+    };
+
     const reset = () => {
         setDataSource(items)
         setTargetKeys(index)
@@ -183,6 +197,7 @@ const AntdTransfer = (props: TransferProp) => {
                         pagination={pagination}
                         oneWay={oneway}
                         disabled={disabled}
+                        filterOption={filterOption}
                         listStyle={{
                             width: grow ? '100%' : width,
                             height: height,

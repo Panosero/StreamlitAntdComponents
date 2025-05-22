@@ -1,8 +1,6 @@
 import {Streamlit} from "streamlit-component-lib";
 import React, {useEffect, useRef, useState} from "react";
 import {Checkbox, ConfigProvider} from 'antd';
-import type {CheckboxValueType} from "antd/es/checkbox/Group";
-import type {CheckboxChangeEvent} from 'antd/es/checkbox';
 import {GetColor, getSize, insertStyle, MartineRadiusSize, RgbaColor} from "../js/utils.react"
 import {LabelWrap} from "./utils";
 
@@ -59,7 +57,7 @@ const AntdCheckbox = (props: CheckboxProp) => {
     insertStyle(`sac.checkbox.style`, textStyle)
 
     //state
-    const [checkedList, setCheckedList] = useState<CheckboxValueType[]>(index)
+    const [checkedList, setCheckedList] = useState<any[]>(index)
 
     const initState = (x: number[], y: number[]) => {
         if (x.length === y.length) {
@@ -76,13 +74,13 @@ const AntdCheckbox = (props: CheckboxProp) => {
     const [checkAll, setCheckAll] = useState(initState(index, allIndex)['checkAll']);
 
     //callback
-    const onChange = (list: CheckboxValueType[]) => {
+    const onChange = (list: any[]) => {
         setCheckedList(list)
         setIndeterminate(!!list.length && list.length < allIndex.length);
         setCheckAll(list.length === allIndex.length)
         Streamlit.setComponentValue(list.map((x: any) => return_index ? x : kv[x]))
     }
-    const onCheckAllChange = (e: CheckboxChangeEvent) => {
+    const onCheckAllChange = (e: any) => {
         let stValue = e.target.checked ? allIndex : [];
         setCheckedList(stValue);
         setIndeterminate(false);
