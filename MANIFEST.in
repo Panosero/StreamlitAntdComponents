@@ -2,9 +2,6 @@ recursive-include streamlit_antd_components/frontend/build *
 include LICENSE
 include CHANGELOG.md
 include readme.md
-include pyproject.toml
-recursive-include img *.jpg *.png
-recursive-include tests *.py
 global-exclude __pycache__
 global-exclude *.py[cod]
 global-exclude *.so
